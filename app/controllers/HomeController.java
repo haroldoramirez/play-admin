@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2018. Haroldo Ramirez da Nobrega
+ */
+
 package controllers;
 
 import models.Computer;
@@ -62,7 +66,7 @@ public class HomeController extends Controller {
         // Run a db operation in another thread (using DatabaseExecutionContext)
         return computerRepository.page(page, 10, sortBy, order, filter).thenApplyAsync(list -> {
             // This is the HTTP rendering thread context
-            return ok(views.html.list.render(list, sortBy, order, filter));
+            return ok(views.html.computers.list.render(list, sortBy, order, filter));
         }, httpExecutionContext.current());
     }
 
@@ -81,7 +85,7 @@ public class HomeController extends Controller {
             // This is the HTTP rendering thread context
             Computer c = computerOptional.get();
             Form<Computer> computerForm = formFactory.form(Computer.class).fill(c);
-            return ok(views.html.editForm.render(id, computerForm, companies));
+            return ok(views.html.computers.editForm.render(id, computerForm, companies));
         }, httpExecutionContext.current());
     }
 
@@ -96,7 +100,7 @@ public class HomeController extends Controller {
             // Run companies db operation and then render the failure case
             return companyRepository.options().thenApplyAsync(companies -> {
                 // This is the HTTP rendering thread context
-                return badRequest(views.html.editForm.render(id, computerForm, companies));
+                return badRequest(views.html.computers.editForm.render(id, computerForm, companies));
             }, httpExecutionContext.current());
         } else {
             Computer newComputerData = computerForm.get();
@@ -117,7 +121,7 @@ public class HomeController extends Controller {
         // Run companies db operation and then render the form
         return companyRepository.options().thenApplyAsync((Map<String, String> companies) -> {
             // This is the HTTP rendering thread context
-            return ok(views.html.createForm.render(computerForm, companies));
+            return ok(views.html.computers.createForm.render(computerForm, companies));
         }, httpExecutionContext.current());
     }
 
@@ -130,7 +134,7 @@ public class HomeController extends Controller {
             // Run companies db operation and then render the form
             return companyRepository.options().thenApplyAsync(companies -> {
                 // This is the HTTP rendering thread context
-                return badRequest(views.html.createForm.render(computerForm, companies));
+                return badRequest(views.html.computers.createForm.render(computerForm, companies));
             }, httpExecutionContext.current());
         }
 

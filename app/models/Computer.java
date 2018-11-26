@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2018. Haroldo Ramirez da Nobrega
+ */
+
 package models;
 
 import play.data.format.Formats;
@@ -7,9 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 
-/**
- * Computer entity managed by Ebean
- */
 @Entity 
 public class Computer extends BaseModel {
 
@@ -26,6 +27,6 @@ public class Computer extends BaseModel {
     
     @ManyToOne
     public Company company;
-    
+
 }
 
