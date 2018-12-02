@@ -10,8 +10,8 @@ import play.data.validation.Constraints;
 import javax.persistence.Entity;
 import java.util.Date;
 
-@Entity 
-public class Company extends BaseModel {
+@Entity
+public class Group extends BaseModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,6 +23,4 @@ public class Company extends BaseModel {
 
     @Formats.DateTime(pattern="yyyy-MM-dd")
     public Date discontinued;
-
 }
-

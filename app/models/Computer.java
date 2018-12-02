@@ -18,15 +18,15 @@ public class Computer extends BaseModel {
 
     @Constraints.Required
     public String name;
-    
-    @Formats.DateTime(pattern="yyyy-MM-dd")
-    public Date introduced;
-    
-    @Formats.DateTime(pattern="yyyy-MM-dd")
-    public Date discontinued;
-    
+
     @ManyToOne
     public Company company;
+
+    @Formats.DateTime(pattern="yyyy-MM-dd")
+    public Date introduced;
+
+    @Formats.DateTime(pattern="yyyy-MM-dd")
+    public Date discontinued;
 
 }
 
